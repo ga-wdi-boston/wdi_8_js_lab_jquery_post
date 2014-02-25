@@ -4,7 +4,7 @@
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
 
     <script src='js/jquery.js'></script>
-    <script src='js/ajax_loading.js'></script>    
+    <script src='js/ajax_globals.js'></script>    
     <script>
       $(document).ready(function(){
 
@@ -12,6 +12,8 @@
         $.get( "http://localhost:3000", function( data ) {
           var articles = data.articles,
           articlesHTML = '';
+
+          event.preventDefault();
 
           // Build the HTML for each Article
           for(var i = 0; i < articles.length; i++){
@@ -24,6 +26,37 @@
           $('#articles').append(articlesHTML);
 
         }); // end get xhr
+     
+      // set the handler for creating a new article
+      $('#new-article').submit(function(event){
+
+         // New article form
+         var $form = $(event.target),
+         $title = $form.find("input[name='title']"),
+         $body = $form.find("input[name='body']"),
+         // Get the form action
+         action = $form.attr('action');
+
+         event.preventDefault();
+      
+        // Create and send a POST request
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:3000/articles', 
+            data: {article:  {title: $title.val(), body: $body.val()}},
+            dataType: 'json',
+            success: function(response){
+              var article = response.article,
+                articleHTML = '<li id=article_' + article.id + '>';
+                articleHTML += article.title;
+                articleHTML += '<div>' + article.body + '</div>';
+                articleHTML += '</li>';
+
+              // Add the article to the article list
+              $('#articles').append(articleHTML);
+            } // success function
+          }); // end ajax
+        }); // end handler
 
       }); // end ready
     </script>
@@ -34,7 +67,14 @@
       <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
     </div>
 
-    <h3>Simple Ajax Get</h3>
+    <h3>Simple Ajax Post</h3>
+
+    <!-- Create a new Article -->
+    <form id='new-article' action='http://localhost:3000/articles'>
+      <input type='text' name='title'placeholder="Enter new title">
+      <input type='textarea' name='body' placeholder="Enter new contents">
+      <input type='submit' value='Create Article'>
+    </form>
 
     <div id='container'>
       <ul id='articles'>Articles

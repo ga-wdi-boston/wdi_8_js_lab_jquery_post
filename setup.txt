@@ -1,17 +1,14 @@
-* Install the CORS gem for Rails into the server. Add this to your Gemfile.
+* Simple, All in one page that only gets all articles from a
+  JSON API running on http://localhost:3000
 
-gem 'rack-cors', :require => 'rack/cors'
+open simple_get.html
 
-* Add this to the config/application.rb
-
-     config.middleware.use Rack::Cors do
-      allow do
-        origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
-      end
-    end
-
-* Start Chrome with disabled web security. So Chrome will allow you to load the EJS file from
-the file system.
+* Same as above but uses the EJS, ERB like, template engine.
+     * To use the EJS file you MUST start Chrome with disabled web security.
+     * So Chrome will allow you to load the EJS file from the file system.
 
 open -a "/Applications/Google Chrome.app" --args --disable-web-security
+open simple_get_ejs.html
+
+*
+open simple_post.html
