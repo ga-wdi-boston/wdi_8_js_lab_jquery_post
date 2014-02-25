@@ -1,0 +1,33 @@
+<html>
+  <head>
+   <!-- Spinners for Ajax loading -->
+    <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
+
+    <script  src='jquery.js'> </script>
+     <script src='js/ajax_loading.js'></script> 
+
+    <script  src='js/ejs_1.0_developer/ejs.js'> </script>
+    <script  src='js/ejs_1.0_developer/view.js'> </script>
+    <script>
+      $(document).ready(function(){
+
+      $.get( "http://localhost:3000", function( data ) {
+        // load the template file, then render it with data
+        var articlesHTML = new EJS({url: 'templates/articles.ejs'}).render(data);
+        $('#container').append(articlesHTML);
+      });
+
+      });
+    </script>
+  </head>
+  <body>
+   <!-- Ajax Loading Spinner-->
+    <div id="ajaxSpinnerContainer" class='centered'>
+      <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
+    </div>
+
+    <h3>Simple Ajax Get</h3>
+    <div id='container'>
+    </div>
+  </body>
+</html>

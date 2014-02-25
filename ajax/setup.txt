@@ -1,0 +1,17 @@
+* Install the CORS gem for Rails into the server. Add this to your Gemfile.
+
+gem 'rack-cors', :require => 'rack/cors'
+
+* Add this to the config/application.rb
+
+     config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
+* Start Chrome with disabled web security. So Chrome will allow you to load the EJS file from
+the file system.
+
+open -a "/Applications/Google Chrome.app" --args --disable-web-security
