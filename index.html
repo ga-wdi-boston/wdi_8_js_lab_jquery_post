@@ -1,41 +1,35 @@
 <html>
   <head>
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
-    <script src='js/jquery.js'></script>  
-
+    <script src='js/jquery.js'></script>
     <!-- TODO: 3 -->
     <!--  Spinners for Ajax loading -->
-
+    <script type="text/javascript" src="src/global_ajax.js"></script>
     <!-- TODO: -->
     <!-- Ajax Global Handlers -->
-
-    <script>
-      // Fires when DOM is loaded.
-      $(document).ready(function(){
-        <!-- TODO: 1 -->
-        // Retrieve all the articles
-        // And update the article list in the DOM.
-
-      }); // end ready
-    </script>
+    <script type="text/javascript" src="src/article_list.js"></script>
+    <script type="text/javascript" src="src/article.js"></script>
   </head>
   <body>
-    <!-- TODO: 2 -->  
+    <!-- TODO: 2 -->
     <!-- Ajax Loading Spinner-->
-    <!-- <div id="ajaxSpinnerContainer" class='centered'>
+    <div id="ajaxSpinnerContainer" class='centered'>
       <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
     </div>
-    -->
 
-    <h3>Simple Ajax Get</h3>
-
-    <div id='container'>
+    <div class="container">
+      <h1>Simple Ajax Get</h1>
+      <h2>Articles</h2>
+      <hr>
+      <form id="new_article" action="http://localhost:3000/articles">
+        <input type="text" id="article_title" class="input" placeholder="New article title" autofocus>
+        <input type="textarea" id="article_body" class="input" placeholder="New article body">
+        <input type="submit" id="article_submit" class="article_btn">
+      </form>
 
       <!-- List of all the Articles -->
-      <ul id='articles'>Articles
-      </ul>
-
+      <div id='articles'>
+      </div>
     </div>
-
   </body>
 </html>

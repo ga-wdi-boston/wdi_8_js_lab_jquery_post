@@ -1,3 +1,6 @@
+body {
+	background-color: #fff;
+}
 #ajaxSpinnerContainer {
   height:11px;
 }
@@ -11,3 +14,69 @@
  margin-top: -50px;
  margin-left: -100px;
 }
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+
+}
+.article {
+	margin-bottom: 20px;
+	padding: 5px 10px;
+	background-color: #fff;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 2px;
+}
+
+h2 {
+	font-size: 60px;
+	font-family: sans-serif;
+	color: #222;
+}
+
+h2.title {
+	font-size: 40px;
+	font-family: sans-serif;
+	color: #444;
+}
+
+p.body {
+	font-size: 18px;
+	line-height: 24px;
+	font-family: helvetica;
+}
+
+h1 {
+	font-size: 80px;
+	font-family: sans-serif;
+	color: #222;
+}
+
+#article_title {
+	width: 200px;
+	height: 32px;
+	font-size: 18px;
+	border-radius: 2px;
+}
+
+#article_body {
+	width: 200px;
+	height: 32px;
+	font-size: 18px;
+	border-radius: 2px;
+}
+
+#article_submit {
+	width: 100px;
+	height: 32px;
+	border-radius: 2px;
+	font-size: 18px;
+	color:white;
+	background-color: tomato;
+	border-color: tomato;
+}
+
+.carl h2 {
+	font-size: 100px;
+}
+
