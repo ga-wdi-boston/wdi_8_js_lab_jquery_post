@@ -3,11 +3,11 @@ var AjaxDemo = AjaxDemo || {};
 // Only need one Article List 
 AjaxDemo.ArticleList = {}
 
-// Initialize with the 
+// Initialize with the
 AjaxDemo.ArticleList.init = function(getUrl, articleListEl){
   this.url = getUrl,
   this.articleListEl = articleListEl;
-  
+
   // Set the get articles handler
   $('#get-articles').click(this.getArticles.bind(this));
 
@@ -40,7 +40,7 @@ AjaxDemo.ArticleList.createArticle = function(event){
     success: function(response){
       // Add the article to the article list
       var article = new AjaxDemo.Article(
-        response.article.id, 
+        response.article.id,
         response.article.title,
         response.article.body);
 

@@ -4,10 +4,9 @@
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
 
     <script src='js/jquery.js'></script>
-    <script src='js/ajax_globals.js'></script>    
+    <script src='js/ajax_globals.js'></script>
     <script>
       $(document).ready(function(){
-
         // Retrieve all the articles
         $.get( "http://localhost:3000", function( data ) {
           var articles = data.articles,
