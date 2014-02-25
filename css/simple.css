@@ -1,8 +1,9 @@
 #ajaxSpinnerContainer {
   height:11px;
+  display:none;
 }
 #ajaxSpinnerImage {
-  display:none;
+
 }
 .centered {
  position: fixed;
@@ -10,4 +11,8 @@
  left: 50%;
  margin-top: -50px;
  margin-left: -100px;
+}
+
+#count {
+  font-weight: bold;
 }

@@ -11,13 +11,16 @@
 
     <script type="text/javascript">
       var addSpinner = function(){
-        $('#spinner').html('loading...')
+        $('#ajaxSpinnerContainer').css('display', 'block');
       };
       var removeSpinner = function(){
-        $('#spinner').html('')
+        $('#ajaxSpinnerContainer').css('display', 'none')
       };
       var renderArticles = function(articles) {
         var i = 0, length = articles.length;
+        $('#count').html(length);
+
+        $('#articles').empty();
         for (; i < length; ) {
           $('#articles').append($('<li>').
             append('<h2>' + articles[i].title + '</h2>').
@@ -27,11 +30,7 @@
       };
     </script>
     <script>
-      // Fires when DOM is loaded.
-      $(document).ready(function(){
-        <!-- TODO: 1 -->
-        // Retrieve all the articles
-        // And update the article list in the DOM.
+      var loadArticles = function(){
         $.ajax({
           url: 'http://localhost:3000/',
           beforeSend: function(){ addSpinner(); },
@@ -41,25 +40,58 @@
           },
           failure: function(){}
         });
+      }
+
+      // Fires when DOM is loaded.
+      $(document).ready(function(){
+        <!-- TODO: 1 -->
+        // Retrieve all the articles
+        // And update the article list in the DOM.
+
+
+        $('#load').on('click', loadArticles);
+
+        // Create new article
+        $('form').submit(function(event){
+          event.preventDefault();
+          $.ajax({
+            url: 'http://localhost:3000/articles',
+            method: 'post',
+            data: {article: {title: $('#title').val(), body: $('#body').val()} },
+            beforeSend: function(){ addSpinner(); },
+            complete: function(){ removeSpinner(); },
+            success: function(){
+              loadArticles();
+              $('#title').val('');
+              $('#body').val('');
+            },
+            failure: function(){}
+          });
+        });
       }); // end ready
     </script>
   </head>
   <body>
     <!-- TODO: 2 -->
     <!-- Ajax Loading Spinner-->
-    <!-- <div id="ajaxSpinnerContainer" class='centered'>
+    <div id="ajaxSpinnerContainer" class='centered'>
       <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
     </div>
-    -->
 
+    <h3>Create Article</h3>
+    <form>
+      <label>Title</label><input type='text' name='title' id='title'>
+      <label>Body</label><input type='text' name='body' id='body'>
+      <input type='submit'>
+    </form>
     <h3>Simple Ajax Get</h3>
 
     <div id='container'>
+      <button id='load'>Load Articles</button>
 
       <!-- List of all the Articles -->
-      <ul id='articles'>Articles
+      <ul id='articles'><span id='count'></span> Articles
       </ul>
-      <div id='spinner'></div>
 
     </div>
 
