@@ -1,7 +1,7 @@
 <html>
   <head>
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
-    <script src='js/jquery.js'></script>  
+    <script src='js/jquery.js'></script>
 
     <!-- TODO: 3 -->
     <!--  Spinners for Ajax loading -->
@@ -9,18 +9,43 @@
     <!-- TODO: -->
     <!-- Ajax Global Handlers -->
 
+    <script type="text/javascript">
+      var addSpinner = function(){
+        $('#spinner').html('loading...')
+      };
+      var removeSpinner = function(){
+        $('#spinner').html('')
+      };
+      var renderArticles = function(articles) {
+        var i = 0, length = articles.length;
+        for (; i < length; ) {
+          $('#articles').append($('<li>').
+            append('<h2>' + articles[i].title + '</h2>').
+            append('<p>' + articles[i].body + '</p>'));
+          i = i + 1;
+        }
+      };
+    </script>
     <script>
       // Fires when DOM is loaded.
       $(document).ready(function(){
         <!-- TODO: 1 -->
         // Retrieve all the articles
         // And update the article list in the DOM.
-
+        $.ajax({
+          url: 'http://localhost:3000/',
+          beforeSend: function(){ addSpinner(); },
+          complete: function(){ removeSpinner(); },
+          success: function(response){
+            renderArticles(response.articles);
+          },
+          failure: function(){}
+        });
       }); // end ready
     </script>
   </head>
   <body>
-    <!-- TODO: 2 -->  
+    <!-- TODO: 2 -->
     <!-- Ajax Loading Spinner-->
     <!-- <div id="ajaxSpinnerContainer" class='centered'>
       <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
@@ -34,6 +59,7 @@
       <!-- List of all the Articles -->
       <ul id='articles'>Articles
       </ul>
+      <div id='spinner'></div>
 
     </div>
 
