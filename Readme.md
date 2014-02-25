@@ -1,36 +1,63 @@
 # Ajax Post
-* Make sure you have the Articles API running on port 3000.
-  ``git clone git@github.com:ga-wdi-boston/wdi_6_rails_lab_api.git``
+## Startup the Rails JSON Articles Service.
+ Make sure you have the Articles API running on port 3000.
 
-  ``cd wdi_6_rails_lab_api``  
+1.  ``git clone git@github.com:ga-wdi-boston/wdi_6_rails_lab_api.git``
+
+2.  ``cd wdi_6_rails_lab_api``  
   
-  This will seed your DB with Lorem Ipsum data.  
-  ``rake db:reset ``
+  
+3.  This will seed your DB with Lorem Ipsum data.  
+	``rake db:reset ``
 
-  * In Chrome go to http://localhost:3000 and make sure you
+4. In Chrome go to http://localhost:3000 and make sure you
   get back a JSON representation of all the articles.
 
-* Simple AJAX GET.  
- 	All in one page that only gets all articles from a
-  JSON API running on http://localhost:3000
+## Create a page that will show all the articles.
+1. Fork and clone this repo. 
+
+2. Modify index.html to retrieve all the articles from the Articles service
+and show them.
+
+3. **Instructor Led:** Use a global Ajax handler to indicate that the Ajax request is in progress.
+
+#### Example:  
+
+simple_get.html is single page app that gets all articles from the Articles service.
 
   ``open simple_get.html``
 
-* Same as above but uses the EJS, ERB like, template engine.
-     * To use the EJS file you MUST start Chrome with disabled web security.
-     * So Chrome will allow you to load the EJS file from the file system.
+#### Example (EJS):
+simple.get_ejs.html will also get all articles from the Articles service. 
+	__But it uses EJS, ERB like, template library to build the list__. 
+
+* To use the EJS file you MUST start Chrome with disabled web security.
+* So Chrome will allow you to load the EJS file from the file system.
 
   ``open -a "/Applications/Google Chrome.app" --args --disable-web-security``
   ``open simple_get_ejs.html``
 
-* Make a HTTP Ajax POST to create an article.  
+
+
+## Create Artices using Ajax POST.
+
+1. **Instructor Led:** Modify index.html to create articles and show them in the list of articles.
+
+#### Example:
+simple_post.html will show a form where you can create individual articles.
 
   ``$ open simple_post.html``
 
-* Refactored HTTP Ajax GET. This will use Javascript classes, bind, etc
+
+## Refactor 
+1. Refactor the Ajax GET to use Javascript namespaces, classes, bind, etc.
+2. Refactor Ajax Post to use Javascript classes, bind, etc.
+
+#### Example (Ajax GET Refactored):
 
   ``open adv_get.html``
 
-* Refactored HTTP Ajax POST. This will use Javascript classes, bind, etc
+
+#### Example (Ajax POST Refactored):
 
   ``open manage_articles.html``
