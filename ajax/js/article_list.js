@@ -11,7 +11,7 @@ AjaxDemo.ArticleList.init = function(getUrl, articleListEl){
   // Set the get articles handler
   $('#get-articles').click(this.getArticles.bind(this));
 
-  // Trigger the click event
+  // Trigger the click event to get the articles
   $('#get-articles').trigger('click');
 
   // set the handler for creating a new article
@@ -63,6 +63,7 @@ AjaxDemo.ArticleList.getArticles = function(event){
      };
 
     // Fill in the Article list
+    this.articleListEl.empty();
     this.articleListEl.append(articlesHTML);
   }.bind(this)); // end get xhr
 }
