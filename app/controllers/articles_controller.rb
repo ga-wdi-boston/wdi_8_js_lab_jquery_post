@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.new(params[:article])
+    @article = Article.new(article_params)
 
     if @article.save
       render json: @article, status: :created, location: @article
@@ -53,4 +53,9 @@ class ArticlesController < ApplicationController
 
     head :no_content
   end
+
+  private
+    def article_params
+      params.require(:article).permit(:title, :body, :id)
+    end
 end

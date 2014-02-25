@@ -7,5 +7,9 @@ $(document).ready(function(){
   }).ajaxStop(function(){
       // Fires when Ajax Request is done
       $("#ajaxSpinnerImage").hide();
-    });
+    })
+  .ajaxError(function( event, request, settings ) {
+    $( "#msg" ).append( "<li>Error requesting page " + settings.url + "</li>" );
+  });
+  
 });

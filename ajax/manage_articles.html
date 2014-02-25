@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <!-- Spinners for Ajax loading -->
+    <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
+
+    <script src='js/jquery.js'></script>
+    <script src='js/ajax_globals.js'></script>    
+    <script src='js/article.js'></script>        
+    <script src='js/article_list.js'></script>            
+    <script>
+      $(document).ready(function(){
+        AjaxDemo.ArticleList.init('http://localhost:3000', $('#articles'));
+      }); // end ready
+    </script>
+  </head>
+
+  <body>
+    <!-- Ajax Loading Spinner-->
+    <div id="ajaxSpinnerContainer" class='centered'>
+      <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
+    </div>
+
+    <h3>Article Manager</h3>
+
+    <div id='container'>
+      <button id='get-articles'>Get Articles</button>
+
+      <!-- Create a new Article -->
+      <form id='new-article' action='http://localhost:3000/articles'>
+        <input type='text' name='title'placeholder="Enter new title">
+        <input type='textarea' name='body' placeholder="Enter new contents">
+        <input type='submit' value='Create Article'>
+      </form>
+
+      <!-- All the Articles --> 
+      <h2>Articles</h2>
+      <ul id='articles'>
+      </ul>
+
+    </div> <!-- end container -->
+  </body>
+</html>
