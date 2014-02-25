@@ -2,73 +2,13 @@
   <head>
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
     <script src='js/jquery.js'></script>
+    <script type="text/javascript" src="src/article_list.js"></script>
+    <script type="text/javascript" src="src/article.js"></script>
 
-    <!-- TODO: 3 -->
-    <!--  Spinners for Ajax loading -->
-
-    <!-- TODO: -->
-    <!-- Ajax Global Handlers -->
-
-    <script type="text/javascript">
-      var addSpinner = function(){
-        $('#ajaxSpinnerContainer').css('display', 'block');
-      };
-      var removeSpinner = function(){
-        $('#ajaxSpinnerContainer').css('display', 'none')
-      };
-      var renderArticles = function(articles) {
-        var i = 0, length = articles.length;
-        $('#count').html(length);
-
-        $('#articles').empty();
-        for (; i < length; ) {
-          $('#articles').append($('<li>').
-            append('<h2>' + articles[i].title + '</h2>').
-            append('<p>' + articles[i].body + '</p>'));
-          i = i + 1;
-        }
-      };
-    </script>
     <script>
-      var loadArticles = function(){
-        $.ajax({
-          url: 'http://localhost:3000/',
-          beforeSend: function(){ addSpinner(); },
-          complete: function(){ removeSpinner(); },
-          success: function(response){
-            renderArticles(response.articles);
-          },
-          failure: function(){}
-        });
-      }
-
-      // Fires when DOM is loaded.
-      $(document).ready(function(){
-        <!-- TODO: 1 -->
-        // Retrieve all the articles
-        // And update the article list in the DOM.
-
-
-        $('#load').on('click', loadArticles);
-
-        // Create new article
-        $('form').submit(function(event){
-          event.preventDefault();
-          $.ajax({
-            url: 'http://localhost:3000/articles',
-            method: 'post',
-            data: {article: {title: $('#title').val(), body: $('#body').val()} },
-            beforeSend: function(){ addSpinner(); },
-            complete: function(){ removeSpinner(); },
-            success: function(){
-              loadArticles();
-              $('#title').val('');
-              $('#body').val('');
-            },
-            failure: function(){}
-          });
-        });
-      }); // end ready
+      $(function(){
+        App.init();
+      });
     </script>
   </head>
   <body>
@@ -80,9 +20,8 @@
 
     <h3>Create Article</h3>
     <form>
-      <label>Title</label><input type='text' name='title' id='title'>
+      <label>Title</label><input type='text' name='title' id='title' autofocus>
       <label>Body</label><input type='text' name='body' id='body'>
-      <input type='submit'>
     </form>
     <h3>Simple Ajax Get</h3>
 
