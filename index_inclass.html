@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
+    <script src='js/jquery.js'></script>
+    <script src='js/articles_inclass.js'></script>
+
+     <!-- Spinners for Ajax loading -->
+    <script src='js/ajax_globals.js'></script>
+
+    <!-- Ajax Global Handlers -->
+    <script>
+      // Fires when DOM is loaded.
+      $(document).ready(function(){
+        AjaxDemoJanice.ArticleList.listTheArticles('http://localhost:3000', $('#articles'));
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Ajax Loading Spinner-->
+    <div id="ajaxSpinnerContainer" class='centered'>
+      <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
+    </div>
+    <h3>Simple Ajax Get</h3>
+    <div id='container'>
+      <form id='new-article' action='http://localhost:3000/articles'>
+        <input type='text' name='title'placeholder="title">
+        <input type='textarea' name='body' placeholder="contents">
+        <input type='submit' value='Create'>
+      </form>
+      <!-- List of all the Articles -->
+      <ul id='articles'>Articles
+      </ul>
+    </div>
+
+  </body>
+</html>
