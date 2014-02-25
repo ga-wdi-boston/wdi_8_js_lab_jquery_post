@@ -16,21 +16,23 @@
     </script>
   </head>
   <body>
-    <!-- Ajax Loading Spinner-->
+    <div class="container">
+
     <div id="ajaxSpinnerContainer" class='centered'>
       <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
     </div>
-    <h3>Simple Ajax Get</h3>
-    <div id='container'>
+
+    <h3>Ajax Post for Adding Articles</h3>
       <form id='new-article' action='http://localhost:3000/articles'>
         <input type='text' name='title'placeholder="title">
         <input type='textarea' name='body' placeholder="contents">
         <input type='submit' value='Create'>
       </form>
-      <!-- List of all the Articles -->
-      <ul id='articles'>Articles
+    <!-- List of all the Articles -->
+    <h3>Ajax Get for Listing Articles</h3>
+
+      <ul id='articles'>
       </ul>
     </div>
-
   </body>
 </html>
