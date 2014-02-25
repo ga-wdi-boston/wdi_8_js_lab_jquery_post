@@ -1,38 +1,36 @@
 <html>
   <head>
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
-    <script src='js/jquery.js'></script>  
-
-    <!-- TODO: 3 -->
-    <!--  Spinners for Ajax loading -->
-
-    <!-- TODO: -->
-    <!-- Ajax Global Handlers -->
+    <script src='js/jquery.js'></script>
+    <script type="text/javascript" src="src/article_list.js"></script>
+    <script type="text/javascript" src="src/article.js"></script>
 
     <script>
-      // Fires when DOM is loaded.
-      $(document).ready(function(){
-        <!-- TODO: 1 -->
-        // Retrieve all the articles
-        // And update the article list in the DOM.
-
-      }); // end ready
+      $(function(){
+        App.init();
+      });
     </script>
   </head>
   <body>
-    <!-- TODO: 2 -->  
+    <!-- TODO: 2 -->
     <!-- Ajax Loading Spinner-->
-    <!-- <div id="ajaxSpinnerContainer" class='centered'>
+    <div id="ajaxSpinnerContainer" class='centered'>
       <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
     </div>
-    -->
 
+    <h3>Create Article</h3>
+    <form>
+      <label>Title</label><input type='text' name='title' id='title' autofocus>
+      <label>Body</label><input type='text' name='body' id='body'>
+      <input type="submit">
+    </form>
     <h3>Simple Ajax Get</h3>
 
     <div id='container'>
+      <button id='load'>Load Articles</button>
 
       <!-- List of all the Articles -->
-      <ul id='articles'>Articles
+      <ul id='articles'><span id='count'></span> Articles
       </ul>
 
     </div>
