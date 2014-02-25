@@ -6,7 +6,8 @@ App.addSpinner = function(){
 App.removeSpinner = function(){
   $('#ajaxSpinnerContainer').css('display', 'none')
 };
-App.processForm = function(){
+App.processForm = function(event){
+  event.preventDefault();
   var title = $('#title').val(),
     body = $('#body').val(),
     article = new App.Article(title, body);
@@ -18,7 +19,7 @@ App.processForm = function(){
 
 App.init = function(){
   $('#load').on('click', App.ArticleList.load);
-  $('#body').change(App.processForm);
+  $('form').submit(App.processForm);
 };
 
 
@@ -34,8 +35,7 @@ App.ArticleList = {
       success: function(response){
         console.log(response);
         App.ArticleList.render(response.articles);
-      },
-      failure: function(){}
+      }
     });
   },
   render: function(articles){
