@@ -1,15 +1,66 @@
 <html>
   <head>
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
-    <script src='js/jquery.js'></script>  
-
+    <script src='js/jquery.js'></script>
     <!-- TODO: 3 -->
     <!--  Spinners for Ajax loading -->
-
+    <script src='js/ajax_globals.js' type='text/javascript'></script>
     <!-- TODO: -->
     <!-- Ajax Global Handlers -->
 
     <script>
+    $(document).ready(function() {
+      $('#new-article').submit(function(event) {
+
+        var $form = $(event.target);
+
+        $title = $form.find('input[name="title"]');
+        $body = $form.find('input[name="body"]');
+        url = $form.attr('action');
+
+        event.preventDefault();
+
+    //Ajax post
+    $.ajax( {
+      type: 'POST',
+      url: url,
+      data: {article: {title: $title.val(), body: $body.val()}},
+      datatype: 'json',
+
+      success: function(response){
+        var article = response.article;
+
+        articleHTML = '<li id="article_' + article.id +  '>';
+        articleHTML += article.title;
+        articleHTML += '<div>' + article.body + '</div>';
+        articleHTML += '</li>';
+
+        //append to teh end of the article list
+        $('article').append(articleHTML);
+      }
+    })
+
+      $.get( "http://localhost:3000", function( data ) {
+          var articles = data.articles,
+          articlesHTML = '';
+
+          // Build the HTML for each Article
+          for(var i = 0; i < articles.length; i++){
+            articlesHTML += '<li id=article_' + articles[i].id + '>' + articles[i].title;
+            articlesHTML += '<div>' + articles[i].body + '</div>';
+            articlesHTML += '</li>';
+          }
+
+          // Fill in the Article list
+          $('#articles').append(articlesHTML);
+
+
+      }); // end get xhr
+
+       // end ready
+  });
+});
+
       // Fires when DOM is loaded.
       $(document).ready(function(){
         <!-- TODO: 1 -->
@@ -20,12 +71,14 @@
     </script>
   </head>
   <body>
-    <!-- TODO: 2 -->  
+    <!-- TODO: 2 -->
     <!-- Ajax Loading Spinner-->
-    <!-- <div id="ajaxSpinnerContainer" class='centered'>
+    <div id="ajaxSpinnerContainer" class='centered'>
       <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
     </div>
-    -->
+
+
+
 
     <h3>Simple Ajax Get</h3>
 
@@ -34,6 +87,11 @@
       <!-- List of all the Articles -->
       <ul id='articles'>Articles
       </ul>
+      <form id='new-article' action='http://localhost:3000/articles'>
+        <input type='text name'name='title' placeholder='enter a new title'>
+        <input type= 'textarea' name='body' placeholder='enter content'>
+        <input type= 'submit' value= 'create article'>
+      </form>
 
     </div>
 
