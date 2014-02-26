@@ -11,3 +11,47 @@
  margin-top: -50px;
  margin-left: -100px;
 }
+
+.container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.panel {
+	padding: 10px;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+ul li {
+	margin-bottom: 20px;
+	background: whitesmoke;
+	padding: 10px;
+}
+
+ul li:nth-child(2){
+	background: white;
+}
+
+.submit {
+	background: #33A1C9;
+	color: white;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+
+input, textarea {
+	margin-bottom: 5px
+}
+
+
+body {
+	font-family: sans-serif;
+}
+
+h4 {
+	padding-bottom: 0;
+}
