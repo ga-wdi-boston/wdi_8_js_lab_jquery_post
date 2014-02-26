@@ -59,13 +59,12 @@ AjaxDemo.ArticleList.createArticle = function(event) {
 	    var article = response.article,
 	      articleHTML;
 
+      var article = new AjaxDemo.Article(
+        response.article.id,
+        response.article.title,
+        response.article.body);
 
-	    articleHTML = '<li id="article_' + article.id + '">';
-	    articleHTML += article.title;
-	    articleHTML += '<div>' + article.body + '</div>';
-	    articleHTML += '</li>';
-
-	    $('#articles').append(articleHTML);
+	    $('#articles').append(article.showView());
 	  }
 	}); //end of ajax
 };
