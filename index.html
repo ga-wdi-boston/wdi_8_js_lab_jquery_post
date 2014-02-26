@@ -1,10 +1,13 @@
 <html>
   <head>
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
-    <script src='js/jquery.js'></script>  
+    <script src='js/jquery.js'></script>
 
     <!-- TODO: 3 -->
     <!--  Spinners for Ajax loading -->
+    <script src='js/ajax_globals.js'></script>
+    <script src='src/article_list.js'></script>
+    <script src='src/article.js'></script>
 
     <!-- TODO: -->
     <!-- Ajax Global Handlers -->
@@ -12,22 +15,27 @@
     <script>
       // Fires when DOM is loaded.
       $(document).ready(function(){
-        <!-- TODO: 1 -->
-        // Retrieve all the articles
-        // And update the article list in the DOM.
+        APP.ArticleList.init('http://localhost:3000', $('#articles'));
+      });
 
-      }); // end ready
     </script>
   </head>
   <body>
-    <!-- TODO: 2 -->  
+    <!-- TODO: 2 -->
     <!-- Ajax Loading Spinner-->
-    <!-- <div id="ajaxSpinnerContainer" class='centered'>
+    <div id="ajaxSpinnerContainer" class='centered'>
       <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
     </div>
-    -->
 
-    <h3>Simple Ajax Get</h3>
+    <h3>Simple Ajax Post</h3>
+
+    <button id='get-articles'>Get Articles</button>
+
+    <form id="new-article" action='http://localhost:3000/articles'>
+      <input type="text" name="title" placeholder="Enter a title">
+      <input type="textarea" name="body" placeholder="Enter the body">
+      <input type="submit" value='Create Article'>
+    </form>
 
     <div id='container'>
 
