@@ -2,81 +2,16 @@
   <head>
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
     <script src='js/jquery.js'></script>
-
-
-
-    <!-- TODO: 3 -->
-    <!--  Spinners for Ajax loading -->
+    <script src='src/article.js' type="text/javascript"></script>
+    <script src='src/article_list.js' type="text/javascript"></script>
     <script src="js/ajax_globals.js" type="text/javascript"></script>
-    <!-- TODO: -->
-    <!-- Ajax Global Handlers -->
 
     <script>
-      // Fires when DOM is loaded.
-      $(document).ready(function(){
-
-        // Demo.ArticleList.init('http://localhost:3000/articles')
-        <!-- TODO: 1 -->
-
-        $('#new-article').submit(function(event){
-
-          // handler on the form
-          // the form is the target of the handler
-          var $form = $(event.target);
-
-          $title = $form.find('input[name="title"]');
-          $body = $form.find('input[name="body"]');
-          url = $form.attr('action');
-
-          event.preventDefault();
-
-          // Ajax post
-          $.ajax({
-            type: 'POST',
-            url: url,
-            data: {article: {title: $title.val(), body: $body.val()}},
-            datatype: 'json',
-
-            success: function(response) {
-              var article = response.article;
-              articleHTML = '<li id="article_' + article.id + '>';
-              articleHTML += article.title;
-              articleHTML += '<div>' + article.body + '</div>';
-              articleHTML += '</li>';
-
-              //append to end of article list
-              $('#articles').append(articleHTML);
-            }
-          }); // end post
-        }); // end of submit handler
-
-
-        // Retrieve all the articles
-        // And update the article list in the DOM.
-
-        $.get( "http://localhost:3000/", function( data ) {
-        //   // $('#articles').append('<li>' + data.articles[0].title, data.articles[0].body + '</li>' );
-        //   // $('#articles').append('<li>' + data.articles[1].title, data.articles[1].body  + '</li>' );
-        //   // $('#articles').append('<li>' + data.articles[2].title, data.articles[2].body  + '</li>' );
-        //   // $('#articles').append('<li>' + data.articles[3].title, data.articles[3].body  + '</li>' );
-        //   // $('#articles').append('<li>' + data.articles[4].title, data.articles[4].body  + '</li>' );
-
-        //   // prevent bubbling
-
-          event.preventDefault();
-
-          var articles = data.articles, articleHTML;
-
-          for(var i=0; i < articles.length; i++) {
-            $('#articles').append('<li>' + data.articles[i].title, data.articles[i].body + '</li>' );
-          }
-        });
-      }); // end ready
+      $(document).ready(function(){ Demo.ArticleList.init('http://localhost:3000/articles') });
     </script>
+
   </head>
   <body>
-    <!-- TODO: 2 -->
-    <!-- Ajax Loading Spinner-->
     <div id="ajaxSpinnerContainer" class='centered'>
       <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
     </div>
@@ -84,11 +19,11 @@
     <h3>Simple Ajax Get</h3>
 
     <div id='container'>
-
-      <!-- List of all the Articles -->
       <ul id='articles'>Articles
       </ul>
+
       <button id="get-articles">Get All Articles</button>
+
       <form id="new-article" action="http://localhost:3000/articles">
         <input type="text" name="title" placeholder="Enter a new title">
         <input type="textarea" name="body" placeholder="Enter new contents">

@@ -8,7 +8,7 @@ Demo.Article = function(id, title, body){
 }
 
 Demo.Article.prototype.render = function(){
-  // making the 'li' element for each article
+  // making the 'li' element for each article, same as the lab
   var article_li = '<li id=article_' + this.id + '>';
   article_li += this.title
   article_li += '<div>' + this.body + '</div>';
