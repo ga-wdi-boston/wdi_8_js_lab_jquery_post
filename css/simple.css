@@ -11,3 +11,22 @@
  margin-top: -50px;
  margin-left: -100px;
 }
+
+li {
+  list-style-type: none;
+  margin-bottom: 10px;
+  font-family: 'Helvetica Neue', 'Helvetica', arial, sans-serif;
+}
+
+li:nth-child(2n) {
+  background: rgba(50, 50, 50, 0.8);
+  color: tomato;
+}
+
+.container {
+  width: 80%;
+}
+
+body {
+  background: #E67E22;
+}
