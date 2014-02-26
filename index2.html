@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
+    <script src='js/jquery.js'></script>
+    <script src="src/article.js"></script>
+    <script src="src/launch_carl.js"></script>
+    <script src="js/ajax_globals.js")></script>
+  </head>
+  <body>
+
+    <h3>Simple Ajax Get</h3>
+
+    <div id='container'>
+      <form id='new-article' action='http://localhost:3000/articles' method="POST">
+        <input type='text' name='title'placeholder="Enter new title">
+        <input type='textarea' name='body' placeholder="Enter new contents">
+        <input type='submit' value='Create Article'>
+      </form>
+
+      <h1>Articles</h1>
+      <ul id='articles'>
+      </ul>
+
+    </div>
+
+  </body>
+</html>
