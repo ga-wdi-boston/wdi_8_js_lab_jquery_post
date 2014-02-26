@@ -4,7 +4,7 @@
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
 
     <script src='js/jquery.js'></script>
-    <script src='js/ajax_globals.js'></script>    
+    <script src='js/ajax_globals.js'></script>
     <script>
       $(document).ready(function(){
 
@@ -26,26 +26,27 @@
           $('#articles').append(articlesHTML);
 
         }); // end get xhr
-     
+
       // set the handler for creating a new article
       $('#new-article').submit(function(event){
 
          // New article form
-         var $form = $(event.target),
+         // Get the form, since it's the event target
+         var $form = $(event.target), // $form is just a convention, doesn't mean it's global
          $title = $form.find("input[name='title']"),
          $body = $form.find("input[name='body']"),
          // Get the form action
-         action = $form.attr('action');
+         action = $form.attr('action'); // form has an id and an action attribute, action represents the url
 
-         event.preventDefault();
-      
+         event.preventDefault(); // By default, form action reloads the page
+
         // Create and send a POST request
         $.ajax({
             type: "POST",
-            url: 'http://localhost:3000/articles', 
+            url: action, //defined above
             data: {article:  {title: $title.val(), body: $body.val()}},
             dataType: 'json',
-            success: function(response){
+            success: function(response){ // success is same as .done function that ajax generates by default
               var article = response.article,
                 articleHTML = '<li id=article_' + article.id + '>';
                 articleHTML += article.title;
