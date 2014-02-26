@@ -41,14 +41,14 @@ APP.ArticleList.createArticle = function(event) {
     type: "POST",
     url: this.url + '/articles',
     data: {article:  {title: $title.val(), body: $body.val()}},
-    dataType: 'json',
-    success: function(response){
+    dataType: 'json'
+  })
+    .done(function(data){
       var article = new APP.Article(
-        response.article.id,
-        response.article.title,
-        response.article.body);
+        data.article.id,
+        data.article.title,
+        data.article.body);
 
       articleListEl.append(article.createHTML());
-    }
-  });
+    });
 };
