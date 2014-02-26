@@ -1,41 +1,37 @@
 <html>
   <head>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
-    <script src='js/jquery.js'></script>  
+    <script src='js/jquery.js'></script>
+    <script src='js/ajax_globals.js'></script>
+    <script src='js/src/e_article_list.js' type="text/javascript"></script>
+    <script src='js/src/e_article.js' type="text/javascript"></script>
+    <script src='js/main.js' type="text/javascript"></script>
 
-    <!-- TODO: 3 -->
-    <!--  Spinners for Ajax loading -->
-
-    <!-- TODO: -->
-    <!-- Ajax Global Handlers -->
-
-    <script>
-      // Fires when DOM is loaded.
-      $(document).ready(function(){
-        <!-- TODO: 1 -->
-        // Retrieve all the articles
-        // And update the article list in the DOM.
-
-      }); // end ready
-    </script>
   </head>
   <body>
-    <!-- TODO: 2 -->  
-    <!-- Ajax Loading Spinner-->
-    <!-- <div id="ajaxSpinnerContainer" class='centered'>
+  <div class='container'>
+
+    <h3>EBlog Articles</h3>
+
+    <div id="ajaxSpinnerContainer" class='centered'>
       <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
     </div>
-    -->
-
-    <h3>Simple Ajax Get</h3>
 
     <div id='container'>
+      <div class='panel panel-default'>
+        <form id='new-article' action='http://localhost:3000/articles'>
+          <input id='new-title' class='form-control' placeholder='Title'>
+          <textarea id='new-body'class='form-control' placeholder='Article text'></textarea>
+          <input type='submit' value='Create Article' class='form-control submit'>
+        </form>
+      </div>
 
       <!-- List of all the Articles -->
-      <ul id='articles'>Articles
+      <ul id='articles'>
       </ul>
 
     </div>
-
+    </div>
   </body>
 </html>
