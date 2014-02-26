@@ -1,10 +1,11 @@
 <html>
   <head>
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
-    <script src='js/jquery.js'></script>  
+    <script src='js/jquery.js'></script>
 
     <!-- TODO: 3 -->
     <!--  Spinners for Ajax loading -->
+    <script src="js/ajax_globals.js"></script>
 
     <!-- TODO: -->
     <!-- Ajax Global Handlers -->
@@ -12,20 +13,77 @@
     <script>
       // Fires when DOM is loaded.
       $(document).ready(function(){
-        <!-- TODO: 1 -->
+
+        $('#new-article').submit(function(event) {
+
+          var $form = $(event.target),
+              $title = $form.find('input[name="title"]'),
+              $body = $form.find('input[name="body"]'),
+              url = $form.attr('action');
+
+          event.preventDefault();
+          // Ajax post
+          $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            data: {article: {title: $title.val(), body: $body.val()}},
+            success: function(response) {
+              var article = response.article,
+                articleHTML;
+
+
+              articleHTML = '<li id="article_' + article.id + '">';
+              articleHTML += article.title;
+              articleHTML += '<div>' + article.body + '</div>';
+              articleHTML += '</li>';
+
+              $('#articles').append(articleHTML);
+            }
+          }); //end of ajax
+        }); //end of submit handler
+
+
+
         // Retrieve all the articles
         // And update the article list in the DOM.
+          getArticles = function() {
+            $.ajax({
+              url: "http://localhost:3000",
+              type: 'GET',
+              dataType: 'json',
+            })
+            .done(function(data) {
+              var articles = data.articles;
+              articlesHTML = '';
 
+              // Build the HTML for each Article
+              for(var i = 0; i < articles.length; i++){
+                articlesHTML += '<li id=article_' + articles[i].id + '>' + articles[i].title;
+                articlesHTML += '<div>' + articles[i].body + '</div>';
+                articlesHTML += '</li>';
+              };
+
+              $('#articles').append(articlesHTML);
+            })
+            .fail(function() {
+              console.log("error");
+            })
+            .always(function() {
+              console.log("complete");
+            });
+          };
+        getArticles();
       }); // end ready
     </script>
   </head>
   <body>
-    <!-- TODO: 2 -->  
+    <!-- TODO: 2 -->
     <!-- Ajax Loading Spinner-->
-    <!-- <div id="ajaxSpinnerContainer" class='centered'>
+    <div id="ajaxSpinnerContainer" class='centered'>
       <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
     </div>
-    -->
+
 
     <h3>Simple Ajax Get</h3>
 
@@ -34,6 +92,12 @@
       <!-- List of all the Articles -->
       <ul id='articles'>Articles
       </ul>
+
+      <form id='new-article' action='http://localhost:3000/articles'>
+        <input type='text' name='title' placeholder='Enter a new title'>
+        <input type='textarea' name='body' placeholder='Enter article contents'>
+        <input type='submit' value='Create Article'>
+      </form>
 
     </div>
 

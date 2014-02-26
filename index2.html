@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
+    <script src='js/jquery.js'></script>
+    <script src='src/article.js'></script>
+    <script src='src/article_list.js'></script>
+
+    <!-- TODO: 3 -->
+    <!--  Spinners for Ajax loading -->
+    <script src="js/ajax_globals.js"></script>
+
+    <!-- TODO: -->
+    <!-- Ajax Global Handlers -->
+
+    <script>
+      // Fires when DOM is loaded.
+      $(document).ready(function(){
+        AjaxDemo.ArticleList.init('http://localhost:3000', $('#articles'));
+      }); // end ready
+    </script>
+  </head>
+  <body>
+    <!-- TODO: 2 -->
+    <!-- Ajax Loading Spinner-->
+    <!-- <div id="ajaxSpinnerContainer" class='centered'>
+      <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
+    </div> -->
+
+
+    <h3>Refactor Ajax Get</h3>
+
+    <div id='container'>
+      <button id='get-articles'>Get Articles</button>
+      <!-- List of all the Articles -->
+      <ul id='articles'>Articles
+      </ul>
+<!--
+      <form id='new-article' action='http://localhost:3000/articles'>
+        <input type='text' name='title' placeholder='Enter a new title'>
+        <input type='textarea' name='body' placeholder='Enter article contents'>
+        <input type='submit' value='Create Article'>
+      </form> -->
+
+    </div>
+
+  </body>
+</html>
