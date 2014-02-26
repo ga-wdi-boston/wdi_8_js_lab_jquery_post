@@ -1,69 +1,17 @@
 <html>
   <head>
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
+
     <script src='js/jquery.js'></script>
-    <script type="text/javascript" src='js/ajax_globals.js'></script>
-
-    <!-- TODO: 3 -->
-    <!--  Spinners for Ajax loading -->
-
-    <!-- TODO: -->
-    <!-- Ajax Global Handlers -->
-
+    <script src='src/global_ajax.js'></script>
+    <script src='src/article.js'></script>
+    <script src='src/article_list.js'></script>
     <script>
-      // Fires when DOM is loaded.
       $(document).ready(function(){
-        $('#new-article').submit(function(event){
-          // get the form
-          var $form = $(event.target),
-          // get the title input
-              $title = $form.find('input[name="title"]'),
-              $body = $form.find('input[name="body"]'),
-              url = $form.attr('action');
-              event.preventDefault();
-
-        // Ajax post
-          $.ajax({
-            type: 'POST',
-            data: {article: {title: $title.val(), body: $body.val()}  },
-            dataType: 'json',
-            url: url,
-            success: function(response){
-              event.preventDefault();
-              var article = response.article,
-              articlesHTML = '',
-              new_li = $('<li id="article_' + article.id + '">'),
-              new_div = $('<div>');
-
-              new_li.append(article.title);
-              new_div.append(article.body);
-              new_li.append(new_div)
-
-              // append to the end of the article list
-
-              $('#articles').append(new_li);
-            }
-          }); // End post
-        }); // End submit handler
-
-
-        $.get( "http://localhost:3000", function(data){
-          var articles = data.articles,
-          articlesHTML = '';
-
-          for(var i = 0; i < articles.length; i++){
-            articlesHTML += '<li id=article_' + articles[i].id + '>' + articles[i].title;
-            articlesHTML += '<div>' + articles[i].body + '</div>';
-            articlesHTML += '</li>';
-          };
-
-          $('#articles').append(articlesHTML);
-        });
-        // Retrieve all the articles
-        // And update the article list in the DOM.
-
-      }); // end ready
+        AjaxHw.ArticleList.init('http://localhost:3000', $('#articles'));
+      });
     </script>
+
   </head>
   <body>
     <!-- TODO: 2 -->
@@ -75,12 +23,12 @@
     <h3>Simple Ajax Get</h3>
 
     <div id='container'>
-
+      <button id='get-articles'>Get Articles</button>
       <!-- List of all the Articles -->
       <form id="new-article" action='http://localhost:3000/articles'>
         <input type='text' name='title' placeholder='Enter a new title'>
         <input type='textarea' name='body' placeholder='Enter a new contents'>
-        <input type='submit' valer='create article'>
+        <input type='submit' value='create article'>
       </form>
 
       <ul id='articles'>Articles

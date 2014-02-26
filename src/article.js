@@ -1,15 +1,15 @@
-var AjaxDemo = AjaxDemo || {};
+var AjaxHw = AjaxHw || {};
 
-AjaxDemo.Article = function(id, title, body){
+AjaxHw.Article = function(id, title, body){
   this.id = id;
   this.title = title;
   this.body = body;
 }
 
-AjaxDemo.Article.prototype.showView = function(){
+AjaxHw.Article.prototype.showContent = function(){
   var articleHTML = '<li id=article_' + this.id + '>';
   articleHTML += this.title;
   articleHTML += '<div>' + this.body + '</div>';
   articleHTML += '</li>';
-  return articleHTML
+  return articleHTML;
 }
