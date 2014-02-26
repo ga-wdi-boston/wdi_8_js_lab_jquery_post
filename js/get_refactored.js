@@ -1,20 +1,28 @@
-$(document).ready(function(){
+var ShowArticles = {
 
-        // Retrieve all the articles
-        $.get( "http://localhost:3000", function( data ) {
-          var articles = data.articles,
-          articlesHTML = '';
+  ShowArticles.Article: function(id, title, body) {
+      this.id = id;
+      this.title = title;
+      this.body = body;
+   },
 
-          // Build the HTML for each Article
-          for(var i = 0; i < articles.length; i++){
-            articlesHTML += '<li id=article_' + articles[i].id + '>' + articles[i].title;
-            articlesHTML += '<div>' + articles[i].body + '</div>';
-            articlesHTML += '</li>';
-          };
+  ShowArticles.Article.prototype.add = function() {
+      var articlesHTML = '<li id=article_' + this.id + '>';
+        articlesHTML += this.title;
+        articlesHTML += '<div>' + this.body + '</div>';
+        articlesHTML += '</li>';
 
-          // Fill in the Article list
-          $('#articles').append(articlesHTML);
+      return articlesHTML;
+  }
 
-        });
+};
 
-      });
+// Geometry.Rectangle.prototype.perimeter = function() {
+//   return this.length * 2 + this.width * 2;
+//     console.log(rectangle_two.perimeter);
+// };
+
+// Geometry.Rectangle.prototype.area = function() {
+//   return this.length * this.width;
+//     console.log(rectangle_one.area);
+// };
