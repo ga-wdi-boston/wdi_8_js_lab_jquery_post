@@ -11,6 +11,8 @@ AjaxDemo.ArticleList.init = function(getUrl, articleListEl){
 	$('#get-articles').click(this.getArticles());
 	$('#get-articles').trigger('click');
 
+	$('#new-article').submit(this.createArticle);
+
 };
 
 AjaxDemo.ArticleList.getArticles = function(event) {
@@ -38,4 +40,32 @@ AjaxDemo.ArticleList.getArticles = function(event) {
 	.always(function() {
 	  console.log("complete");
 	});
-}
+};
+
+AjaxDemo.ArticleList.createArticle = function(event) {
+	var $form = $(event.target),
+	    $title = $form.find('input[name="title"]'),
+	    $body = $form.find('input[name="body"]'),
+	    url = $form.attr('action');
+
+	event.preventDefault();
+	// Ajax post
+	$.ajax({
+	  url: url,
+	  type: 'POST',
+	  dataType: 'json',
+	  data: {article: {title: $title.val(), body: $body.val()}},
+	  success: function(response) {
+	    var article = response.article,
+	      articleHTML;
+
+
+	    articleHTML = '<li id="article_' + article.id + '">';
+	    articleHTML += article.title;
+	    articleHTML += '<div>' + article.body + '</div>';
+	    articleHTML += '</li>';
+
+	    $('#articles').append(articleHTML);
+	  }
+	}); //end of ajax
+};
