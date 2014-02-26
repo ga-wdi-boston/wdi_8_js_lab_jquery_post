@@ -1,10 +1,7 @@
 <html>
   <head>
 
-    <!-- css stylesheet -->
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
-
-    <!-- jquery file -->
     <script src='js/jquery.js'></script>
 
     <!-- ajax global functions - $(document).ajaxStart will fire at the beginning of any ajax function in the whole app-->
@@ -12,10 +9,11 @@
     <script src='js/ajax_globals.js'></script>
 
     <!-- script for getting & displaying old articles and creating & displaying new articles -->
+    <script src='src/article_list.js'></script>
+    <script src='src/article.js'></script>
     <script src='src/main.js'></script>
 
   </head>
-
 
   <body>
 
@@ -28,31 +26,25 @@
 
     </div>
 
-    <!-- page title at the top -->
     <h3>Simple Ajax Post</h3>
+
+    <br>
+    <!-- button to get all articles -->
+    <button id='get-articles'>Get Articles</button>
 
     <!-- form for creating a new article -->
     <!-- the action="localhost" defines where to send the form data when the form is submitted (with default method="get") -->
     <form id='new-article' action='http://localhost:3000/articles'>
 
-      <!-- article title textbox -->
       <input type='text' name='title'placeholder="Enter new title">
-
-      <!-- article contents textbox -->
       <input type='textarea' name='body' placeholder="Enter new contents">
-
-      <!-- submit button -->
       <input type='submit' value='Create Article'>
     </form>
 
-    <!-- container for the articles  -->
     <div id='container'>
 
-      <!-- starts the ul of the articles -->
       <ul id='articles'>Articles
-
         <!-- articles will go inside here as li elements -->
-
       </ul>
 
     </div>
