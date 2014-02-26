@@ -1,39 +1,34 @@
 <html>
   <head>
     <link href="css/simple.css" rel="stylesheet" type="text/css" media="all">
-    <script src='js/jquery.js'></script>  
-
-    <!-- TODO: 3 -->
-    <!--  Spinners for Ajax loading -->
-
-    <!-- TODO: -->
-    <!-- Ajax Global Handlers -->
+    <script src='js/jquery.js'></script>
+    <script src='src/article.js' type="text/javascript"></script>
+    <script src='src/article_list.js' type="text/javascript"></script>
+    <script src="js/ajax_globals.js" type="text/javascript"></script>
 
     <script>
-      // Fires when DOM is loaded.
-      $(document).ready(function(){
-        <!-- TODO: 1 -->
-        // Retrieve all the articles
-        // And update the article list in the DOM.
-
-      }); // end ready
+      $(document).ready(function(){ Demo.ArticleList.init('http://localhost:3000/articles') });
     </script>
+
   </head>
   <body>
-    <!-- TODO: 2 -->  
-    <!-- Ajax Loading Spinner-->
-    <!-- <div id="ajaxSpinnerContainer" class='centered'>
+    <div id="ajaxSpinnerContainer" class='centered'>
       <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">
     </div>
-    -->
 
     <h3>Simple Ajax Get</h3>
 
     <div id='container'>
-
-      <!-- List of all the Articles -->
       <ul id='articles'>Articles
       </ul>
+
+      <button id="get-articles">Get All Articles</button>
+
+      <form id="new-article" action="http://localhost:3000/articles">
+        <input type="text" name="title" placeholder="Enter a new title">
+        <input type="textarea" name="body" placeholder="Enter new contents">
+        <input type="submit" value="Create Article">
+      </form>
 
     </div>
 
