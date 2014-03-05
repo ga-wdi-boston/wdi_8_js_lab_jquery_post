@@ -1,3 +1,17 @@
+var GA = GA || {}
+
+var GA.ArticleList = function(getURL){
+  this.getURL = getURL;
+
+  $('#articles').click(this.getALL);
+}
+
+var GA.ArticleList.getAll = function(){
+
+}
+
+
+
 var AjaxDemo = AjaxDemo || {};
 
 // Only need one Article List 
