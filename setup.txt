@@ -7,17 +7,10 @@
   * In Chrome go to http://localhost:3000 and make sure you
   get back a JSON representation of all the articles.
 
-* Simple, All in one page that only gets all articles from a
+* Simple, Single Page Application (SPA), that gets all articles from a
   JSON API running on http://localhost:3000
 
   $ open simple_get.html
-
-* Same as above but uses the EJS, ERB like, template engine.
-     * To use the EJS file you MUST start Chrome with disabled web security.
-     * So Chrome will allow you to load the EJS file from the file system.
-
-  $ open -a "/Applications/Google Chrome.app" --args --disable-web-security
-  $ open simple_get_ejs.html
 
 * Make a HTTP Ajax POST to create an article.
   $ open simple_post.html
