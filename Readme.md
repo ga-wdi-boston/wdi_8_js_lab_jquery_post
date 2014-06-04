@@ -93,7 +93,20 @@ simple_post.html will show a form where you can create individual articles.
 
 
 #### Example (Ajax POST Refactored):
-
-  OR
   ``ruby -run -e httpd . -p5000``
   Go to localhost:5000/manage_articles.html
+  
+# Handlebars
+We are going to use the [handlebarsjs](http://handlebarsjs.com/) library to generate html.
+### Examples:
+* handlebars.html will implement a very simple handlebar template.  
+* handlebars_ajax.html will make a Ajax request for _one_ article and render it.
+* handlebars_ajax_all.html will make a Ajax request for _all_ of the articles and generate html.
+
+
+### Lab
+Integrate handlebars into refactored javascript, manage_articles.html
+
+
+  
+

@@ -1,0 +1,40 @@
+<html>
+<head>
+  <script src='js/jquery.js'></script>
+  <script src='js/handlebars-v1.3.0.js'></script>
+  <!-- Create a Handlebars template -->
+  <script id="article-template" type="text/x-handlebars-template">
+    <li>{{title}}</li>
+  </script>
+
+  <script>
+    $(document).ready(function(){
+      // create an article
+      var article = {id: 77, body: "some art body", title: "article 77"};
+      // get the article source from above
+      var article_source = $('#article-template').html();
+
+      // compile the template 
+      var template = Handlebars.compile(article_source);
+
+      // Generate the HTML for the article
+      var article_html = template(article);
+
+      // insert the article in the list of articles
+      $('#articles').append(article_html);
+    });
+  </script>
+</head>
+<body>
+  <h3>Simple HandleBars</h3>
+
+  <div id='container'>
+
+    <!-- List of all the Articles -->
+    <ul id='articles'>Articles
+    </ul>
+
+  </div>
+
+</body>
+</html>

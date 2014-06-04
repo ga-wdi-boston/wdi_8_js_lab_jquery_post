@@ -1,0 +1,41 @@
+<html>
+<head>
+  <script src='js/jquery.js'></script>
+  <script src='js/handlebars-v1.3.0.js'></script>
+  <!-- Create a Handlebars template -->
+  <script id="article-template" type="text/x-handlebars-template">
+    <li>{{title}}</li>
+  </script>
+
+  <script>
+    $(document).ready(function(){
+      var articleCallBackHandler = function(article){
+
+        var article_source = $('#article-template').html();
+        var template = Handlebars.compile(article_source);
+        var article_html = template(article);
+
+        // insert the article in the list of articles
+        $('#articles').append(article_html);
+      };
+
+      $.ajax({
+        url: 'http://localhost:3000/articles/2'
+      }).done(articleCallBackHandler);
+    
+    });
+  </script>
+</head>
+<body>
+  <h3>Simple HandleBars</h3>
+
+  <div id='container'>
+
+    <!-- List of all the Articles -->
+    <ul id='articles'>Articles
+    </ul>
+
+  </div>
+
+</body>
+</html>
