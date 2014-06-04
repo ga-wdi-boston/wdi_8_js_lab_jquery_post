@@ -1,4 +1,4 @@
-# Ajax Post
+# Ajax Post 
 ### Objectives.
 1. Show a Standalone Javascript Client.  
 	This is a Single Page Application (SPA) that will use a JSON API to 	persist data.
@@ -33,21 +33,42 @@
   
 Install [JSON Prettifer](https://chrome.google.com/webstore/detail/json-prettifier/kccpfgilgmgbipamhohknpokhibinhhj) into Chrome.
 
-## Create a SPA to show all the articles.
-1. Fork and clone this repo.
+## Get the Finished SPA
+__This repository will contain all the finished code that we are going to write in this lesson.__
+
+__Refer to it if your stuck__
+
+This Finished SPA will contain all the examples below.
+
+Fork and clone this repo.
 	``https://github.com/ga-wdi-boston/wdi_8_js_lab_jquery_post``
 
-2. Modify index.html to retrieve all the articles from the Articles service
-and show them.  
-2.1 Run a HTTP server on port 5000.  
+## Create a new SPA to view all the Articles
+
+1. Create a new __Directory__, named _article_spa_ that will contain all the Client/Browser code (_javascript_, _css_ and _html_) for this SPA.  
+
+	1.1 Change into this article_spa directory  
+	``cd article_spa``  
+	1.2 Make a js and css directory.  
+	1.3 Copy jquery.js and simple.css from the original repo above into these directories.
+	
+2. Create and modify index.html a mimimal index.html. 
+	It will only have head body sections. In the head add the 	jquery.js and simple.css.from the js directory.  
+	
+	Create a h3 with "Articles SPA" and an unordered list with an id='articles'  
+	
+3.  Run a HTTP server on port 5000. 
   ``ruby -run -e httpd . -p5000``  
   
   This will run the WEBrick server on port 5000. This is used ONLY to serve up 
   the html/css and javascript for this SPA.  
   
 3. Update index.html to show all the Articles from the JSON API using Ajax GET.
+	3.1 Goto http://localhost:5000 to see all your articles.
 
 4. Use a global Ajax handler to indicate that the Ajax request is in progress.
+
+
 5. Use the Chrome inspector to 
 	* Step thru the code.
 	* View the HTTP Requests and Replies.
@@ -55,9 +76,10 @@ and show them.
 
 #### Example:
 
-simple_get.html is single page app that gets all articles from the Articles service.
+wdi_6_rails_lab_api/simple_get.html is single page app that gets all articles from the Articles service.  
 
   ``ruby -run -e httpd . -p5000``
+  
   Go to localhost:5000/simple_get.html
 
 ### Lab
