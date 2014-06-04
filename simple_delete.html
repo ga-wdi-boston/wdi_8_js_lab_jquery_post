@@ -84,6 +84,7 @@
             success: function(article){
               // Add the article to the article list
               $('#articles').append(articleHTML(article));
+              $('.delete-article').on('click', deleteArticle);
             } // success function
           }); // end ajax
         }); // end handler
